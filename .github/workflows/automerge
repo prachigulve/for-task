@@ -1,0 +1,21 @@
+name: Merge Develop into Staging
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # This sets the workflow to run daily at midnight UTC
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Merge Develop into Staging
+        run: |
+          git checkout staging
+          git merge --no-ff develop
+          git push origin staging
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
