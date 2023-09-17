@@ -18,5 +18,3 @@ jobs:
           git checkout staging
           git merge develop
           git push origin staging
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
